@@ -1,0 +1,1 @@
+{"version":3,"file":"useNetworkInformation.d.ts","sourceRoot":"","sources":["../src/useNetworkInformation.ts"],"names":[],"mappings":"AAEA,oBAAY,WAAW,GAAG,IAAI,CAC5B,kBAAkB,EAClB,eAAe,GAAG,UAAU,GAAG,KAAK,GAAG,UAAU,CAClD,CAAA;AAID,wBAAgB,qBAAqB,CAAC,QAAQ,CAAC,EAAE,MAAM,IAAI,GAAG;IAC5D,kBAAkB,EAAE,WAAW,GAAG,IAAI,CAAA;IACtC,yBAAyB,EAAE,WAAW,EAAE,CAAA;CACzC,CAqCA"}
