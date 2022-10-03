@@ -1,13 +1,15 @@
 interface NetworkInformation {
-  readonly effectiveType: string;
-  readonly downlink: number;
-  readonly rtt: number;
-  readonly saveData: boolean;
+  readonly effectiveType: string
+  readonly downlink: number
+  readonly rtt: number
+  readonly saveData: boolean
   onchange: (
     e: Event & {
-      currentTarget: NetworkInformation;
+      currentTarget: NetworkInformation
     }
-  ) => void;
+  ) => void
 }
 
-interface NetworkInformation extends NetworkInformation {}
+interface Navigator extends Navigator {
+  connection: NetworkInformation
+}

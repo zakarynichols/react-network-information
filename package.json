@@ -4,9 +4,9 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "node "
+    "start": "node"
   },
-  "author": "Zak Nichols",
+  "author": "Zakary Nichols",
   "license": "MIT",
   "devDependencies": {
     "@jest/types": "^28.1.0",

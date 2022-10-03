@@ -7,7 +7,7 @@ export type NetworkInfo = Pick<
 
 const connection = navigator.connection
 
-export function useNetworkInformation(onChange?: () => void): {
+export function useNetworkInformation(): {
   networkInformation: NetworkInfo | null
   networkInformationHistory: NetworkInfo[]
 } {
@@ -38,10 +38,8 @@ export function useNetworkInformation(onChange?: () => void): {
         downlink: event.currentTarget.downlink,
         saveData: event.currentTarget.saveData
       })
-
-      if (onChange) onChange()
     }
-  }, [networkInformation, onChange])
+  }, [networkInformation])
 
   return {
     networkInformation,

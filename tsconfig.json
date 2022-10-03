@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "lib": ["ES6", "DOM"],
+    "lib": ["ESNext", "DOM"],
     "strict": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "target": "ES6",
