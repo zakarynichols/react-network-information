@@ -1,1 +1,1 @@
-export { useNetworkInformation, NetworkInfo } from "./useNetworkInformation"
+export { useNetworkInformation } from "./useNetworkInformation"
