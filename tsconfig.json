@@ -18,7 +18,8 @@
     "noImplicitThis": true,
     "skipLibCheck": true,
     "outDir": "./dist",
-    "listFiles": false
+    "listFiles": false,
+    "strictNullChecks": true
   },
-  "include": ["./src", "networkInformation.d.ts"]
+  "include": ["./src", "networkInfo.d.ts"]
 }

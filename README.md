@@ -16,13 +16,7 @@ $ npm install react-network-information
  * `networkInformation` is subscribed to the network event change under the hood
  * and will return the updated value as it changes.
  */
-const { networkInformation, networkInformationHistory } = useNetworkInformation()
-
-/*
- * Can pass an optional callback to perform some logic on network change event.
- */
-const { networkInformation, networkInformationHistory } = useNetworkInformation(() => {
-  /** Do something... */
+const { networkInfo, networkInfoHistory } = useNetworkInformation()
 })
 ```
 

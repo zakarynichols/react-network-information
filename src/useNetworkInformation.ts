@@ -1,48 +1,53 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
-export type NetworkInfo = Pick<
-  NetworkInformation,
-  "effectiveType" | "downlink" | "rtt" | "saveData"
->
-
+// Declare in module scope to omit from the deps array.
 const connection = navigator.connection
 
-export function useNetworkInformation(): {
-  networkInformation: NetworkInfo | null
-  networkInformationHistory: NetworkInfo[]
-} {
-  // Lazy init network info state
-  const [networkInformation, setNetworkInformation] = useState<NetworkInfo>(() => ({
-    effectiveType: connection.effectiveType,
-    rtt: connection.rtt,
-    downlink: connection.downlink,
-    saveData: connection.saveData
-  }))
+type OrderedNetworkInfo = {
+  orderId: number
+  info: NetworkInformation
+}
 
-  const networkInformationHistory = useRef<NetworkInfo[]>([])
+type NetworkEventCallback = ({ currentTarget }: { currentTarget: NetworkInformation }) => void
+
+export function useNetworkInformation(): OrderedNetworkInfo[] {
+  const [networkInfo, setNetworkInfo] = useState<OrderedNetworkInfo[]>([
+    {
+      orderId: 0,
+      info: {
+        effectiveType: connection.effectiveType,
+        downlink: connection.downlink,
+        rtt: connection.rtt,
+        saveData: connection.saveData
+      }
+    }
+  ])
 
   useEffect(() => {
-    connection.onchange = (event: Event & { currentTarget: NetworkInformation }) => {
-      // Set the history to the previous connection state
-      networkInformationHistory.current = networkInformationHistory.current.concat({
-        effectiveType: networkInformation.effectiveType,
-        rtt: networkInformation.rtt,
-        downlink: networkInformation.downlink,
-        saveData: networkInformation.saveData
-      })
-
-      // Derive new state from current connection
-      setNetworkInformation({
-        effectiveType: event.currentTarget.effectiveType,
-        rtt: event.currentTarget.rtt,
-        downlink: event.currentTarget.downlink,
-        saveData: event.currentTarget.saveData
-      })
+    const onConnectionChange: NetworkEventCallback = ev => {
+      setNetworkInfo(prevNetInfo =>
+        prevNetInfo.concat([
+          {
+            orderId: prevNetInfo.length,
+            info: {
+              effectiveType: ev.currentTarget.effectiveType,
+              downlink: ev.currentTarget.downlink,
+              rtt: ev.currentTarget.rtt,
+              saveData: ev.currentTarget.saveData
+            }
+          }
+        ])
+      )
     }
-  }, [networkInformation])
+    if (typeof connection.addEventListener === "function")
+      connection.addEventListener("change", onConnectionChange)
+    return () => {
+      if (typeof connection.removeEventListener === "function")
+        connection.removeEventListener("change", onConnectionChange)
+    }
+  }, [])
 
-  return {
-    networkInformation,
-    networkInformationHistory: networkInformationHistory.current
-  }
+  return networkInfo.sort((a, b) => {
+    return a.orderId - b.orderId
+  })
 }
