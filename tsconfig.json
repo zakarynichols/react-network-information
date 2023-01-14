@@ -1,25 +1,14 @@
 {
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],
-    "strict": true,
     "module": "ESNext",
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
+    "strict": true,
     "target": "ES6",
-    "declaration": true,
-    "declarationMap": true,
-    "emitDeclarationOnly": false,
-    "resolveJsonModule": true,
-    "moduleResolution": "Node",
     "jsx": "preserve",
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "allowUnreachableCode": false,
-    "noImplicitThis": true,
-    "skipLibCheck": true,
-    "outDir": "./dist",
-    "listFiles": false,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "declaration": true,
+    "outDir": "./dist"
   },
   "include": ["./src", "networkInfo.d.ts"]
 }

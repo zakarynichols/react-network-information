@@ -1,4 +1,4 @@
-enum ConnectionType {
+declare enum ConnectionType {
   "bluetooth",
   "cellular",
   "ethernet",
@@ -10,7 +10,7 @@ enum ConnectionType {
   "wimax"
 }
 
-enum EffectiveConnectionType {
+declare enum EffectiveConnectionType {
   "2g",
   "3g",
   "4g",
